@@ -1,22 +1,22 @@
 const dashboardNASDAQChart = {
   data: {
     labels: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
+      "10",
+      "20",
+      "30",
+      "40",
+      "50",
+      "60",
+      "70",
+      "80",
+      "90",
+      "100",
+      "110",
+      "120"
     ],
     datasets: [
       {
-        data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70],
+        data: [0, 19, 15, 20, 30, 40, 40, 50, 25, 30, 50, 70, 10, 15, 10, 12, 20,],
         fill: false,
         borderColor: "cyan",
         backgroundColor: "transparent",
@@ -25,16 +25,6 @@ const dashboardNASDAQChart = {
         pointHoverRadius: 4,
         pointBorderWidth: 8
       },
-      {
-        data: [0, 5, 10, 12, 20, 27, 30, 34, 42, 45, 55, 63],
-        fill: false,
-        borderColor: "orange",
-        backgroundColor: "transparent",
-        pointBorderColor: "orange",
-        pointRadius: 4,
-        pointHoverRadius: 4,
-        pointBorderWidth: 8
-      }
     ]
   },
   options: {

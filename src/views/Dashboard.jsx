@@ -1,21 +1,3 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 // react plugin used to create charts
 import { Line, Pie } from "react-chartjs-2";
@@ -92,9 +74,9 @@ class Dashboard extends React.Component {
               <Card className="card-stats">
                 <CardBody>
                   <Row>
-                    <Col md="4" xs="5">
+                  <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-money-coins text-success" />
+                        <i className="nc-icon nc-globe text-warning" />
                       </div>
                     </Col>
                     <Col md="8" xs="7">
@@ -114,7 +96,7 @@ class Dashboard extends React.Component {
                   <Row>
                     <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-vector text-danger" />
+                        <i className="nc-icon nc-delivery-fast text-danger" />
                       </div>
                     </Col>
                     <Col md="8" xs="7">
@@ -134,7 +116,7 @@ class Dashboard extends React.Component {
                   <Row>
                     <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-favourite-28 text-primary" />
+                        <i className="nc-icon nc-watch-time text-primary" />
                       </div>
                     </Col>
                     <Col md="8" xs="7">
@@ -177,9 +159,9 @@ class Dashboard extends React.Component {
               <Card className="card-stats">
                 <CardBody>
                   <Row>
-                    <Col md="4" xs="5">
+                  <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-money-coins text-success" />
+                        <i className="nc-icon nc-globe text-warning" />
                       </div>
                     </Col>
                     <Col md="8" xs="7">
@@ -219,7 +201,7 @@ class Dashboard extends React.Component {
                   <Row>
                     <Col md="4" xs="5">
                       <div className="icon-big text-center icon-warning">
-                        <i className="nc-icon nc-favourite-28 text-primary" />
+                        <i className="nc-icon nc-compass-05 text-primary" />
                       </div>
                     </Col>
                     <Col md="8" xs="7">
@@ -234,6 +216,9 @@ class Dashboard extends React.Component {
               </Card>
             </Col>
           </Row>
+          <br></br>
+          <br></br>
+          
           <Row>
             <Col md="12">
               <Card className="card-chart">
@@ -251,8 +236,7 @@ class Dashboard extends React.Component {
                 </CardBody>
                 <CardFooter>
                   <div className="chart-legend">
-                    <i className="fa fa-circle text-info" /> Actual Path{" "}
-                    <i className="fa fa-circle text-danger" /> Predicted Path
+                    <i className="fa fa-circle text-info" /> Predicted Path
                   </div>
                   <hr />
                   <div className="card-stats">

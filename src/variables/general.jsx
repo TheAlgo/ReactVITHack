@@ -1,30 +1,8 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-// ##############################
-// // // table head data and table body data for Tables view
-// #############################
-
-const thead = ["Name", "Country", "City", "Salary"];
+const thead = ["Latitude", "Longitude", "Speed", "Time Stamps"];
 const tbody = [
   {
     className: "table-success",
-    data: ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738"]
+    data: ["12.9736994", "Niger", "Oud-Turnhout", "$36,738"]
   },
   {
     className: "",
