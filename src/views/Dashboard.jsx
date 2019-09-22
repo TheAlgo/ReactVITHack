@@ -35,12 +35,38 @@ import {
   dashboardEmailStatisticsChart,
   dashboardNASDAQChart
 } from "variables/charts.jsx";
+import firebase from '../variables/firebaseConfig.js';
+import { any } from "prop-types";
 
 class Dashboard extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            actual:{},
+            predicted:{},
+        };
+    }
+
+    componentDidMount(){
+        let dataRef1 = firebase.database().ref('locations');
+        dataRef1.on('child_added',snapshot => {
+            this.setState({actual: snapshot.val()});
+        })
+        let dataRef2 = firebase.database().ref('pred_locations');
+        dataRef2.on('child_added',snapshot => {
+            this.setState({predicted: snapshot.val()});
+        })
+    }
+
   render() {
+      console.log(this.state.predicted);
     return (
       <>
         <div className="content">
+        <Row lg="12">
+              <Col lg="12"><b>Actual Data</b></Col>
+          </Row>
           <Row>
             <Col lg="3" md="6" sm="6">
               <Card className="card-stats">
@@ -54,7 +80,7 @@ class Dashboard extends React.Component {
                     <Col md="8" xs="7">
                       <div className="numbers">
                         <p className="card-category">Latitude</p>
-                        <CardTitle tag="p">150GB</CardTitle>
+                        <CardTitle tag="p">{this.state.actual.lat}</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -74,7 +100,7 @@ class Dashboard extends React.Component {
                     <Col md="8" xs="7">
                       <div className="numbers">
                         <p className="card-category">Longitude</p>
-                        <CardTitle tag="p">$ 1,345</CardTitle>
+                        <CardTitle tag="p">{this.state.actual.lng}</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -93,8 +119,8 @@ class Dashboard extends React.Component {
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category">Speed</p>
-                        <CardTitle tag="p">23</CardTitle>
+                        <p className="card-category">Speed m/s</p>
+                        <CardTitle tag="p">{this.state.actual.speed}</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -114,7 +140,7 @@ class Dashboard extends React.Component {
                     <Col md="8" xs="7">
                       <div className="numbers">
                         <p className="card-category">TimeStamp</p>
-                        <CardTitle tag="p">+45K</CardTitle>
+                        <CardTitle tag="p">{this.state.actual.timestamp}</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -122,6 +148,9 @@ class Dashboard extends React.Component {
                 </CardBody>
               </Card>
             </Col>
+          </Row>
+          <Row lg="12">
+              <Col lg="12"><b>Predicted Data</b></Col>
           </Row>
           <Row>
             <Col lg="3" md="6" sm="6">
@@ -135,8 +164,8 @@ class Dashboard extends React.Component {
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category">X Velocity</p>
-                        <CardTitle tag="p">150GB</CardTitle>
+                        <p className="card-category">latitude</p>
+                        <CardTitle tag="p">{this.state.predicted.lat}</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -155,8 +184,8 @@ class Dashboard extends React.Component {
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category">Y Velocity</p>
-                        <CardTitle tag="p">$ 1,345</CardTitle>
+                        <p className="card-category">longitude</p>
+                        <CardTitle tag="p">{this.state.predicted.lng}</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -176,7 +205,7 @@ class Dashboard extends React.Component {
                     <Col md="8" xs="7">
                       <div className="numbers">
                         <p className="card-category">Velocity</p>
-                        <CardTitle tag="p">23</CardTitle>
+                        <CardTitle tag="p">{this.state.predicted.val}</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -196,7 +225,7 @@ class Dashboard extends React.Component {
                     <Col md="8" xs="7">
                       <div className="numbers">
                         <p className="card-category">Yaw Rate</p>
-                        <CardTitle tag="p">+45K</CardTitle>
+                        <CardTitle tag="p">{this.state.predicted.yaw_rate}</CardTitle>
                         <p />
                       </div>
                     </Col>
@@ -207,60 +236,10 @@ class Dashboard extends React.Component {
           </Row>
           <Row>
             <Col md="12">
-              <Card>
-                <CardHeader>
-                  <CardTitle tag="h5">Users Behavior</CardTitle>
-                  <p className="card-category">24 Hours performance</p>
-                </CardHeader>
-                <CardBody>
-                  <Line
-                    data={dashboard24HoursPerformanceChart.data}
-                    options={dashboard24HoursPerformanceChart.options}
-                    width={400}
-                    height={100}
-                  />
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <div className="stats">
-                    <i className="fa fa-history" /> Updated 3 minutes ago
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="4">
-              <Card>
-                <CardHeader>
-                  <CardTitle tag="h5">Email Statistics</CardTitle>
-                  <p className="card-category">Last Campaign Performance</p>
-                </CardHeader>
-                <CardBody>
-                  <Pie
-                    data={dashboardEmailStatisticsChart.data}
-                    options={dashboardEmailStatisticsChart.options}
-                  />
-                </CardBody>
-                <CardFooter>
-                  <div className="legend">
-                    <i className="fa fa-circle text-primary" /> Opened{" "}
-                    <i className="fa fa-circle text-warning" /> Read{" "}
-                    <i className="fa fa-circle text-danger" /> Deleted{" "}
-                    <i className="fa fa-circle text-gray" /> Unopened
-                  </div>
-                  <hr />
-                  <div className="stats">
-                    <i className="fa fa-calendar" /> Number of emails sent
-                  </div>
-                </CardFooter>
-              </Card>
-            </Col>
-            <Col md="8">
               <Card className="card-chart">
                 <CardHeader>
-                  <CardTitle tag="h5">NASDAQ: AAPL</CardTitle>
-                  <p className="card-category">Line Chart with Points</p>
+                  <CardTitle tag="h5">Performance Graph</CardTitle>
+                  <p className="card-category">Based on last 24 hours data</p>
                 </CardHeader>
                 <CardBody>
                   <Line
@@ -272,8 +251,8 @@ class Dashboard extends React.Component {
                 </CardBody>
                 <CardFooter>
                   <div className="chart-legend">
-                    <i className="fa fa-circle text-info" /> Tesla Model S{" "}
-                    <i className="fa fa-circle text-warning" /> BMW 5 Series
+                    <i className="fa fa-circle text-info" /> Actual Path{" "}
+                    <i className="fa fa-circle text-danger" /> Predicted Path
                   </div>
                   <hr />
                   <div className="card-stats">
